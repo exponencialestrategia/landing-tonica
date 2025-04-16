@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imersão Gastronômica Tônica</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #000; }
+    header, section, footer { padding: 20px; max-width: 800px; margin: auto; }
+    h1 { color: #AB1C3D; text-align: center; }
+    h2 { color: #541F4A; }
+    .highlight { color: #F0B045; font-weight: bold; }
+    .countdown { font-size: 1.5em; color: #541F4A; text-align: center; }
+    form input, form textarea { width: 100%; padding: 10px; margin: 8px 0; }
+    form button { background: #AB1C3D; color: white; padding: 15px; width: 100%; font-size: 16px; border: none; cursor: pointer; }
+    .payment { text-align: center; margin-top: 20px; }
+    .payment a { background: #F0B045; color: #000; padding: 10px 20px; text-decoration: none; border-radius: 8px; display: inline-block; }
+    .qr { display: flex; justify-content: center; margin-top: 20px; }
+    footer { text-align: center; color: #888; margin-top: 40px; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="logo-tonica.png" alt="Logo Tônica" style="display:block; margin:auto; width:150px;" />
+  <h1>Imersão Gastronômica para Líderes de Alta Performance</h1>
+  <p style="text-align:center;">Dia 27 de maio (terça-feira), das 18h30 às 22h – no Tônica Ateliê Gastronômico</p>
+  <p class="highlight" style="text-align:center;">Apenas 24 vagas exclusivas – Garanta sua experiência transformadora!</p>
+  <p class="countdown" id="timer">Carregando...</p>
+</header>
+
+<section>
+  <h2>Inscreva-se agora</h2>
+  <form action="https://sheet.best/api/sheets/YOUR_SHEET_ID" method="POST">
+    <input type="text" name="nome" placeholder="Nome completo" required />
+    <input type="email" name="email" placeholder="E-mail corporativo" required />
+    <input type="text" name="telefone" placeholder="Telefone com DDD" required />
+    <input type="text" name="empresa" placeholder="Empresa" />
+    <input type="text" name="cargo" placeholder="Cargo/Função" />
+    <textarea name="mensagem" placeholder="Mensagem ou comentário (opcional)"></textarea>
+    <button type="submit">GARANTIR MINHA VAGA</button>
+  </form>
+
+  <div class="payment">
+    <p>Valor especial – Primeiro lote até 30/04:</p>
+    <p><strong style="color:#AB1C3D;">R$ 200 individual / R$ 300 dupla (mesma empresa)</strong></p>
+    <a href="https://pagamento.exemplo.com/tonica" target="_blank">IR PARA PAGAMENTO</a>
+    <div class="qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://pagamento.exemplo.com/tonica&size=150x150" alt="QR Code de Pagamento" />
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Tônica Ateliê Gastronômico — Cozinha do Tony. Todos os direitos reservados.
+</footer>
+
+<script>
+const deadline = new Date("2025-04-30T23:59:59").getTime();
+const timerElement = document.getElementById('timer');
+const updateTimer = () => {
+  const now = new Date().getTime();
+  const distance = deadline - now;
+  if (distance < 0) {
+    timerElement.innerHTML = "Encerrado";
+    return;
+  }
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  timerElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+};
+setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
